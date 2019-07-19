@@ -1,0 +1,4 @@
+Git동작구조
+
+working ->(add) -> Staging -> (commit) -> Repository(내 저장소)(내가 만든 파일이 Git 내 저장소{내 local Repository}에 저장됨, 그전은 Git이 관심 없음)
+ -> (Push) -> Remote Repository에 저장됨.  
