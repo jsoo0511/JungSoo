@@ -28,15 +28,15 @@ public class Z36_순열 {
 				int temp=arr[k];
 				arr[k]=arr[i];
 				arr[i]=temp;
-				System.out.printf("arr[i]: %d, arr[k]: %d, i값: %d, k값: %d\n",arr[i],arr[k],i,k);
-				System.out.println("바뀌는 중: "+Arrays.toString(arr));
+				//System.out.printf("arr[i]: %d, arr[k]: %d, i값: %d, k값: %d\n",arr[i],arr[k],i,k);
+				//System.out.println("바뀌는 중: "+Arrays.toString(arr));
 				perm(n,k+1);
 				
 				//swap(k위치 <-> i위치) 원상복귀
 				temp=arr[k];
 				arr[k]=arr[i];
 				arr[i]=temp;
-				System.out.printf("복구 arr[i]: %d, arr[k]: %d\n",arr[i],arr[k]);
+			//	System.out.printf("복구 arr[i]: %d, arr[k]: %d\n",arr[i],arr[k]);
 			
 			}
 		}
