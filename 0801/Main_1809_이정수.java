@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -61,4 +61,4 @@ public class Main_1809_이정수{
 	}
 
 }
->>>>>>> branch 'master' of https://lab.ssafy.com/LeeJungSoo/lee-jung-soo.git
+
