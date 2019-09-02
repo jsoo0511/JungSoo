@@ -40,8 +40,6 @@ public class Main_15686_치킨배달 {
 	static int min;
 	static int distance;
 	static int result;
-	static int dr[]= {0,1,0,-1};
-	static int dc[]= {1,0,-1,0};
 	static int count,ans;
 	static int fixr,fixc;
 
@@ -78,27 +76,29 @@ public class Main_15686_치킨배달 {
 			result=0;
 			
 			for(int i=0;i<list_house.size();i++) {
-		//		count=0;
+				count=0;
 				min=Integer.MAX_VALUE;
-//				System.out.println("count: "+count);
 				copyArr();
 				fixr=list_house.get(i).r;
 				fixc=list_house.get(i).c;
-				//search(list_house.get(i).r, list_house.get(i).c);
 				for(int row=1;row<=n;row++) {
 					for(int col=1;col<=n;col++) {
 						if(copy[row][col]==2) {
 							int dis=Math.abs(fixr-row)+Math.abs(fixc-col);
 							min=Math.min(min, dis);
+							count++;
 						}
+						if(count>=m)
+							break;
 					}
+					if(count>=m)
+						break;
 				}
 				result+=min;
 			}
 			ans=Math.min(ans, result);
 			
 		} else {
-			//System.out.println("start");
 			for(int i=start;i<list.size();i++) {
 				int temp_r=list.get(i).r;
 				int temp_c=list.get(i).c;
