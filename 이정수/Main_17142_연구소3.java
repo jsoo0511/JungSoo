@@ -66,9 +66,10 @@ public class Main_17142_연구소3 {
 	
 	public static void virus(int start,int depth){ //바이러스 m개 선택후 확산
 		if(depth==(list.size()-m)){
-			System.out.println("enter"+(list.size()-m));
+		//	System.out.println("enter"+(list.size()-m));
 			copyarr();
-			min=-1;
+			count=0;//새로운 바이러스 배열  count초기화
+			min=0;
 			visited=new boolean[n][n];
 			for(int i=0;i<n;i++){
 				for(int j=0;j<n;j++){
@@ -80,10 +81,19 @@ public class Main_17142_연구소3 {
 					}
 					if(arr[i][j]==1){
 						visited[i][j]=true;//벽은 방문처리 
+						count++;
 					}
-					if(arr[i][j]==-2)
-						visited[i][j]=true;//비활성바이러스 방문체크
+//					if(arr[i][j]==-2) {
+//						visited[i][j]=true;//비활성바이러스 방문체크
+//					    count++;
+//					}
+					
 				}
+			}
+			if(count==n*n) { //시작하자마자 다 탐색된 경우
+				result=0;
+				flag=true;
+				return;
 			}
 			bfs();
 		
@@ -95,13 +105,13 @@ public class Main_17142_연구소3 {
 				arr[x][y]=-2;//'*'대신 -2로 대체
 				virus(i+1,depth+1);
 				arr[x][y]=2;
-				visited[x][y]=false;
+				//visited[x][y]=false;
 			}
 		}
 	}
 	
 	public static void copyarr(){
-		System.out.println("copy");
+	//	System.out.println("copy");
 		for(int i=0;i<n;i++){
 			for(int j=0;j<n;j++)
 				copy[i][j]=arr[i][j];
@@ -109,16 +119,37 @@ public class Main_17142_연구소3 {
 	}
 	
 	public static void bfs(){
-		for(Virus vi:q)
-			System.out.println(vi);
+		
+	
+//		for(Virus vi:q)
+//			System.out.println(vi);
+//		System.out.println("````````````````````````");
+//		System.out.println("탐색전상태count: "+count);
+//		for(int i=0;i<n;i++) {
+//			for(int j=0;j<n;j++) {
+//				System.out.print(copy[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println("```````````````````````");
+//		System.out.println();
+//		for(int i=0;i<n;i++) {
+//			for(int j=0;j<n;j++) {
+//				System.out.print(visited[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
 		
 		while(!q.isEmpty()){
 			Virus vs=q.poll();
 			int r=vs.x;
 			int c=vs.y;
 			int temp_val=vs.val;
-			
-			copy[r][c]=temp_val;
+			if(copy[r][c]==-2) {
+				copy[r][c]=-2;
+			}
+			else
+			   copy[r][c]=temp_val;
 		//	System.out.println("start point"+r+", "+c);
 			for(int i=0;i<4;i++){
 				int temp_r=r+dr[i];
@@ -126,23 +157,50 @@ public class Main_17142_연구소3 {
 				//System.out.println(temp_r+" , "+temp_c+","+n);
 				//System.out.println(visited[temp_r][temp_c] +", "+isRange(temp_r,temp_c));
 				if(isRange(temp_r,temp_c) && !visited[temp_r][temp_c]){
+//					if(copy[temp_r][temp_c]==-2) {
+//						visited[temp_r][temp_c]=true;
+//						count++;
+//					}
 				//	System.out.println("enter"+temp_r+" "+temp_c);
+					
 					visited[temp_r][temp_c]=true;//방문 후
 					q.offer(new Virus(temp_r,temp_c,temp_val+1));
 					
-					if(min<temp_val+1)//바이러스 퍼지는 시간
+					if(copy[temp_r][temp_c]!=-2 && min<temp_val+1)//바이러스 퍼지는 시간
 					    min=temp_val+1;
-					
 					count++;
+					
 				}
 			}
 	//		System.out.println("one more");
 		}
 		
-		if(result>min)
-			result=min;
-		if(count==n*n)
+//		System.out.println("=================바이러스 다 퍼진 후==============================");
+//		for(int i=0;i<n;i++) {
+//			for(int j=0;j<n;j++) {
+//				System.out.print(copy[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println();
+//		for(int i=0;i<n;i++) {
+//			for(int j=0;j<n;j++) {
+//				System.out.print(visited[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println("=================================================");
+//		
+//		System.out.println("퍼지는 최대 시간: "+min);
+//		
+//		System.out.println(count+" , "+n*n);
+		if(count==n*n) {//다 퍼진 후에만 결과 계산
+		//	System.out.println("Change!!!!!!!!!!!!!!!!");
 			flag=true;
+			if(result>min)
+				result=min;
+		//	System.out.println("result: "+result);
+		}
 	}
 	
 	public static boolean isRange(int r,int c){
