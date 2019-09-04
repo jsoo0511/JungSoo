@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main_17144_미세먼지 {
+public class Main_17144_미세먼지안녕 {
 	public static class Dust{
 		int r;
 		int c;
@@ -17,9 +17,8 @@ public class Main_17144_미세먼지 {
 		}
 		@Override
 		public String toString() {
-			return "Dust [r=" + r + ", c=" + c + "]";
+			return "Dust [r=" + r + ", c=" + c + ", val=" + val + "]";
 		}
-		
 	}
 	
 	public static class Air{
@@ -74,54 +73,21 @@ public class Main_17144_미세먼지 {
     			copy[i][j]=arr[i][j];
     	}
     	
-        ////////////////////
+        ////////////////////////////////////////////////////////
     //	q.offer(new Dust(-2,-2,-2));//구분자
         for(int test=0;test<t;test++) {//t초만큼 반복
+        
         	spread(); //바이러스 퍼트린 후
         	copyArray(); //복사
-        	System.out.println("바이러스 퍼진 후=============");
-        	for(int i=0;i<n;i++) {
-    			for(int j=0;j<m;j++) {
-    				System.out.print(arr[i][j]+" ");
-    			}
-    			System.out.println();
-    		}
-//        
-        	System.out.println(" 이동후 =============");
         	move();//이동
         	for(int i=0;i<n;i++) { //큐에 다값들 삽입
         		for(int j=0;j<m;j++) {
-        			if(arr[i][j]!=0) //먼지들 큐에 삽입
+        			if(arr[i][j]!=0 && arr[i][j]!=-1) //먼지들 큐에 삽입
         				q.add(new Dust(i,j,arr[i][j]));
-        			else
-        				continue;
         		}
         	}
-        	System.out.println("이동후 복사전copy확인=====");
-        	for(int i=0;i<n;i++) {
-    			for(int j=0;j<m;j++) {
-    				System.out.print(copy[i][j]+" ");
-    			}
-    			System.out.println();
-    		}
-        	
-        	copyArray();
-        	System.out.println("이동후 복사 후copy확인=====");
-        	for(int i=0;i<n;i++) {
-    			for(int j=0;j<m;j++) {
-    				System.out.print(copy[i][j]+" ");
-    			}
-    			System.out.println();
-    		}
-        	System.out.println("이동후 arr확인=======");
-        	for(int i=0;i<n;i++) {
-    			for(int j=0;j<m;j++) {
-    				System.out.print(arr[i][j]+" ");
-    			}
-    			System.out.println();
-    		}
-//        
-        	System.out.println("=============");
+        	copyArray();//이동 후 arr copy에복사
+        
         }
         
         for(int i=0;i<n;i++) {
@@ -138,9 +104,7 @@ public class Main_17144_미세먼지 {
 	
 	public static void move() {
 		int hr=airlist.get(0).r;//위로가는 row,col
-		int hc=airlist.get(0).c;
 		int lr=airlist.get(1).r;//아래로가는 row,col
-		int lc=airlist.get(1).c;
 		
 		arr[hr][1]=0;
 		for(int c=1;c<m-1;c++) { //오른쪽이동
@@ -175,7 +139,7 @@ public class Main_17144_미세먼지 {
 			arr[n-1][c-1]=copy[n-1][c];
 		}
 		
-		for(int r=n-1;r<lr;r--) {
+		for(int r=n-1;r>lr+1;r--) {
 			if(copy[r][0]==-1)
 				break;
 			arr[r-1][0]=copy[r][0];
@@ -200,9 +164,6 @@ public class Main_17144_미세먼지 {
 						count++;
 				}
 			}
-		
-			//System.out.println(arr[dust.r][dust.c]);
-			//System.out.println(arr[dust.r][dust.c]-(remain*count));
 			arr[dust.r][dust.c]-=(remain*count); //양옆으로 확산 된 수만큼 원래값에서 remain을 빼줌
 		}
 	}
