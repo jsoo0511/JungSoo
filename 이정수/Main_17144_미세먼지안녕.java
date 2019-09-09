@@ -73,8 +73,6 @@ public class Main_17144_미세먼지안녕 {
     			copy[i][j]=arr[i][j];
     	}
     	
-        ////////////////////////////////////////////////////////
-    //	q.offer(new Dust(-2,-2,-2));//구분자
         for(int test=0;test<t;test++) {//t초만큼 반복
         
         	spread(); //바이러스 퍼트린 후
