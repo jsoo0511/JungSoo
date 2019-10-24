@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main_Á¤¿Ã_2074_¸¶¹æÁø_ÀÌÁ¤¼ö {
+public class Main_ì •ì˜¬_2074_ë§ˆë°©ì§„_ì´ì •ìˆ˜ {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -11,36 +11,36 @@ public class Main_Á¤¿Ã_2074_¸¶¹æÁø_ÀÌÁ¤¼ö {
 		arr[0][n / 2] = 1;
 		int temp_r = 0;
 		int temp_c = n/2;
-		temp_r -= 1;// ¿ŞÂÊ »ç¼±À§·Î ÀÌµ¿
+		temp_r -= 1;// ì™¼ìª½ ì‚¬ì„ ìœ„ë¡œ ì´ë™
 		temp_c -= 1;
 
 		for (int i = 2; i <= n * n; i++) {
 
-			if (temp_c < 0) {// ¿­ÀÌ ¹üÀ§¸¦ ¹ş¾î³­ °æ¿ì
-				if (i % n != 0) {// nÀÇ ¹è¼ö°¡ ¾Æ´Ñ °æ¿ì
-					arr[temp_r][n - 1] = i;//ÀúÀå ÈÄ
+			if (temp_c < 0) {// ì—´ì´ ë²”ìœ„ë¥¼ ë²—ì–´ë‚œ ê²½ìš°
+				if (i % n != 0) {// nì˜ ë°°ìˆ˜ê°€ ì•„ë‹Œ ê²½ìš°
+					arr[temp_r][n - 1] = i;//ì €ì¥ í›„
 					temp_c=n-1;
-					temp_r -= 1;// ¿ŞÂÊ »ç¼±À§·Î ÀÌµ¿
+					temp_r -= 1;// ì™¼ìª½ ì‚¬ì„ ìœ„ë¡œ ì´ë™
 					temp_c -= 1;
-				} else { // nÀÇ ¹è¼öÀÎ °æ¿ì
+				} else { // nì˜ ë°°ìˆ˜ì¸ ê²½ìš°
 					arr[temp_r][n - 1] = i;
 					temp_c=n-1;
-					temp_r += 1; //¾Æ·¡·Î ÀÌµ¿
+					temp_r += 1; //ì•„ë˜ë¡œ ì´ë™
 
 				}
-			} else if (temp_r < 0) { // ÇàÀÌ ¹üÀ§¸¦ ¹ş¾î³­ °æ¿ì
+			} else if (temp_r < 0) { // í–‰ì´ ë²”ìœ„ë¥¼ ë²—ì–´ë‚œ ê²½ìš°
 				if (i % n != 0) {
-					arr[n - 1][temp_c] = i;//ÀúÀå ÈÄ
-					temp_r  =n-2;// ¿ŞÂÊ »ç¼±À§·Î ÀÌµ¿
+					arr[n - 1][temp_c] = i;//ì €ì¥ í›„
+					temp_r  =n-2;// ì™¼ìª½ ì‚¬ì„ ìœ„ë¡œ ì´ë™
 					temp_c -= 1;
-				} else {// nÀÇ ¹è¼öÀÎ °æ¿ì
-					arr[n - 1][temp_c] = i;//¾Æ·¡·Î ÀÌµ¿
+				} else {// nì˜ ë°°ìˆ˜ì¸ ê²½ìš°
+					arr[n - 1][temp_c] = i;//ì•„ë˜ë¡œ ì´ë™
 					temp_r =n;
 				}
-			} else {//¹üÀ§ ¸¸Á·
+			} else {//ë²”ìœ„ ë§Œì¡±
 				if(i%n !=0){
-				arr[temp_r][temp_c] = i;//ÀúÀå ÈÄ
-				temp_r -= 1;// ¿ŞÂÊ »ç¼±À§·Î ÀÌµ¿
+				arr[temp_r][temp_c] = i;//ì €ì¥ í›„
+				temp_r -= 1;// ì™¼ìª½ ì‚¬ì„ ìœ„ë¡œ ì´ë™
 				temp_c -= 1;
 				}
 				else{
@@ -61,24 +61,24 @@ public class Main_Á¤¿Ã_2074_¸¶¹æÁø_ÀÌÁ¤¼ö {
 
 	}//end main
 	
-	//¸¶¹æÁø È®ÀÎ
+	//ë§ˆë°©ì§„ í™•ì¸
 	public static String check(int arr[][], int n){
 		boolean flag=true;
 		int row_sum=0;
 		int col_sum=0;
 		int cross_sum=0;
-		for(int i=0;i<arr[0].length;i++){//ÇàÀÇÇÕ
+		for(int i=0;i<arr[0].length;i++){//í–‰ì˜í•©
 			row_sum+=arr[0][i];
 		}
-		for(int i=0;i<arr.length;i++){//¿­ÀÇÇÕ
+		for(int i=0;i<arr.length;i++){//ì—´ì˜í•©
 			col_sum+=arr[i][0];
 		}
 		
-		for(int i=0;i<arr.length;i++){//´ë°¢¼±ÇÕ
+		for(int i=0;i<arr.length;i++){//ëŒ€ê°ì„ í•©
 			cross_sum+=arr[i][i];
 		}
 		int temp_row_sum;
-		for(int i=0;i<arr.length;i++){ //ÇàÀÇÇÕµé ºñ±³
+		for(int i=0;i<arr.length;i++){ //í–‰ì˜í•©ë“¤ ë¹„êµ
 			temp_row_sum=0;
 			for(int j=0;j<arr[i].length;j++){
 				temp_row_sum+=arr[i][j];
@@ -89,10 +89,10 @@ public class Main_Á¤¿Ã_2074_¸¶¹æÁø_ÀÌÁ¤¼ö {
 			}
 		}
 		if(!flag)
-		    return "¸¶¹æÁø ¾Æ´Ô";
+		    return "ë§ˆë°©ì§„ ì•„ë‹˜";
 		
 		int temp_col_sum;
-		for(int i=0;i<arr.length;i++){ //¿­ÀÇ ÇÕµé ºñ±³
+		for(int i=0;i<arr.length;i++){ //ì—´ì˜ í•©ë“¤ ë¹„êµ
 			temp_col_sum=0;
 			for(int j=0;j<arr[i].length;j++){
 				temp_col_sum+=arr[j][i];
@@ -103,10 +103,10 @@ public class Main_Á¤¿Ã_2074_¸¶¹æÁø_ÀÌÁ¤¼ö {
 			}
 		}
 		if(!flag)
-		    return "¸¶¹æÁø ¾Æ´Ô";
+		    return "ë§ˆë°©ì§„ ì•„ë‹˜";
 		
 		int temp_cross_sum=0;
-		for(int i=0;i<arr.length;i++){ //´ë°¢¼±ÀÇ ÇÕµé ºñ±³
+		for(int i=0;i<arr.length;i++){ //ëŒ€ê°ì„ ì˜ í•©ë“¤ ë¹„êµ
 			temp_cross_sum+=arr[i][n-1-i];
 		}
 		if(temp_cross_sum!=cross_sum){
@@ -115,9 +115,9 @@ public class Main_Á¤¿Ã_2074_¸¶¹æÁø_ÀÌÁ¤¼ö {
 		
 		
 		if(!flag)
-		    return "¸¶¹æÁø ¾Æ´Ô";
+		    return "ë§ˆë°©ì§„ ì•„ë‹˜";
 		else
-			return "¸¶¹æÁø ¼º¸³";
+			return "ë§ˆë°©ì§„ ì„±ë¦½";
 	}
 
 }
