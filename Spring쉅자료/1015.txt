@@ -1,0 +1,92 @@
+https://spring.io/
+
+version: STS 3.9.7
+
+Spring?
+ - 자바 애플리케이션을 만들기 위한 오픈소스 프레임워크다.
+ - 프레임워크 vs 라이브러리
+    : 라이브러리: 애플리케이션 개발에 필요한 기능 제공, 
+                      우리 코드가 라이브러리 사용
+    : 프레임워크: 비지니스 로직이 빠진 뼈대만 갖춰진 애플리케이션(반제품)
+                      우리의 코드(비지니스로직)을 사용
+                      JDBC, JMS, RMI, SOAP,...........................................................
+                      위의 복잡한 기능들은 단순화 --> 단지 호출만으로 쉽게 사용
+                      --> 개발자는 기술이 아닌 비지니스 로직에 집중하라!
+                     
+     PPT? 원리를 파악하는 것도 좋지만 어떻게 쓰는지가 일단 중요!!
+ - 프레임워크로써 스프링의 특징
+     - 귀찮고 힘든일은 대신 해줘요~
+       JDBC를 한다면..
+        DB 관리, TX 처리, 쿼리 작성, JDBC 사용, 예외 처리   --> 쿼리 작성(비지니스로직)
+
+     - light weight framework
+        POJO - Plane Old Java Object를 사용해서 별도의 상속등을 강요하지 않는다.
+     
+     - container
+       tomcat: 서블릿 컨테이너
+       spring container: 스프링 빈(bean)들이 동작, 모든 빈은 singleton으로 관리
+
+스프링의 역사?
+ - 1.0 --> 스프링 설정 xml 기반
+ - 2.5 --> 애너테이션 지원 시작 --> xml + annotation
+ - 3.0 --> java config 지원 --> java + annotation
+
+ - boot  --> 기존의 설정을 자동화, 간소화 --> 비지니스 로직에 집중
+    - 이전의 방식을  legacy, 새로운 방식을  starter project라고 부름
+    - spring은 boot 추천 sts4.x --> legacy 작성 불가
+
+ - STS 환경 확인: encoding, browser
+
+1. 스프링 컨테이너의 특징
+ - Spring은 DI and AOP가 가장 중요한 컨셉
+ - DI - Dependency Injection(의존성 주입)
+ - Spring은 DI를 위한 container이다.
+ - 스프링 애플리케이션 구성: POJO, Spring Framework(Container), 설정 메타 정보
+                                       부품,    조립 라인,                           , 조립 메뉴얼
+
+ - 메타 정보의 작성 방법: xml, annotation, java
+ - POJO: 빈(자바 객체 - 스프링에서 재사용을 위해 관리하는 자바 객체, DI의 대상:  singleton 객체들)
+
+ - 빈의 의존성 설정 방식
+    - 생성자 활용: 빈의 주입을 강제
+    - setter 활용:  빈의 주입이 옵션
+
+ - xml + annotation
+   context:component-scan - 컴포넌트를 찾는다 --> component가 bean
+ - component = 빈
+   @Component: 빈에 대한 선언
+      - 1. 만약 생성자에 @Autowired가 있다면 --> 그 생성자 호출
+      - 2. 기본 생성자 호출로 빈 생성 
+      - 3. 마지막으로 생성자의 파라미터가 모두 빈인 생성자
+      - 4. 이후 @Autowired로 setter 연결
+	
+        생성자에 @Autowired는 하나만 연결 가능
+        
+   @Autowired: 주입 대상 빈을 설정 ( 타입 기반)
+   @Qualifier: 주입 대상의 이름 지정(이름 기반)
+   @Value: scalar 값 지정 ${prop_name}
+
+   @Component: 
+    - 세부적으로 타입에 맞춰서 분리해서 관리(스테레오테입)
+    - @Component: 잘 모를때
+    - @Service: Model에서 Service 타입의 빈을 정의할 때
+    - @Repository: Model에서 DAO 타입의 빈을 정의할 때
+    - @Controller: 웹에서 요청을 처리할 때
+    - @Configuration: java 기반으로 빈을 설정할 때
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

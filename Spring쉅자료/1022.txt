@@ -1,0 +1,7 @@
+1022
+ - DB관련 dependency 추가
+   mysql, mybatis, mybatis-spring, spring-jdbc, spring-tx
+   
+ - Spring의 Flash Scope
+   request < flash < session < application
+   flash는 사실은 session인데 1번 사용하면 바로 삭제해줌   

@@ -1,0 +1,90 @@
+1. java config
+ - @Configuration : 자바기반 환경설정 파일
+      @ComponentScan : 빈스캔 --> 내가 작성한 소스 --> @Component 추가 가능시
+ - @Bean
+    3rd party 제공 클래스를 빈으로 사용할 때
+    빈의 이름은 메서드의 이름
+    
+현재우리의 app은 web.xml이 출발점
+  web.xml --> application_config.xml --> spring start    
+                      --> ApplicationConfig.java을 빈으로 등록 후 사용
+ 
+ 2. rest
+ REST:  uri + http method로 의사 표현
+ GET(조회)   : @GetMapping    : url                 http://localhost/board, http://localhost/board/1
+ POST(추가)  : @PostMapping   : request body        http://localhost/board
+ PUT(수정)   : @PutMapping    : url + request body  http://localhost/board/1
+ DELETE(삭제): @DeleteMapping : url                 http://localhost/board/1
+ 
+ RESTful 하다: url이 rest 방식으로 디자인되어있을 때
+ 
+ REST API - 어떤 언어, 플랫폼을 쓰던지 http만 되면 어디서나 사용 가능한 기능 제공
+  - 일반적인 웹 서비스(@Controller)가 page를 제공한다면 REST API는 데이터 처리만 관심
+ 
+ @Controller --> page 전달이 관심사 --> @ResponseBody (데이터 전달, view resolver 통하지 않음)
+ 
+ @RestController --> 데이터 전달이 관심 --> 언제나 @ResponseBody
+ 
+ DTO등 객체들이 전달되려면 --> JSON 문자열로 변환 필요
+  - jackson data bind 라이브러리 추가
+ 
+ @RequestBody - 파라미터 자체를 json으로 받으려는 경우
+ 
+ SpringTest_solution --> REST api 추가
+ mapper -> model -> service에서 CRUD 구현
+ controller는 RestController로 작업
+ Swagger를 이용한 API 테스트 
+   : swagger config 추가 --> 빈 등록
+   : 정적리소스 활용 추가
+ 
+ 의존성 추가
+  - object --> json : jackson
+  - swagger --> swaggerui, swagger2
+  
+ spring boot
+  = 설정의 자동화
+  
+부트의 특징 
+ 1.jar 패키징: 단독 실행 가능
+ 2. 미리 잘 짜여진 dependency : 
+  라이브러리 간 버전 고민은 스프링이..
+
+  DevTools: 소스 변경 시 자동 reload
+<!-- unknown error 대책 -->
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+  
+  3. Boot1Application : 설정파일
+     - 하위 패키지는 자동 스캔
+  
+- 기본 작업 절차  
+1. 프로젝트 생성
+2. 필요 lib 등록
+   - swagger, jstl, tomcat-embed-jasper
+3. application.properties 설정
+  - db 접속 등
+4. mysql 설정 파일 수정
+5. Book 생성
+6. mapper  수정
+7. repo --> service 작성
+8. rest controller 작성
+9. swagger 설정 - config 만 옮기면 땡~
+10. 실행 후 테스트
+11. web page 작성
+12. ajax 호출
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+ 

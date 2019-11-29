@@ -1,0 +1,120 @@
+vs code 다운로드 
+https://code.visualstudio.com/Download
+
+vue 관련 extension 설치
+ - https://goodteacher.tistory.com/81
+ - live server
+ - vue 2 snippets
+ - Beautify
+ - auto rename tag
+ - vue peek
+ - vetur
+ - Bracket Pair Colorize
+
+vs code의 cdn 주소 설정
+
+2교시
+chap03 directives
+ - v-text = {{}}, v-html, v-once
+ - v-bind: 속성 지정, 단축형 - v-bind:style ==>  :style 형태
+   class on/off를 위해 {class_name:boolean} 형태 사용
+ - v-model: 양방향 통신(view <--> model)
+   input  요소들과 함께 사용
+   input 중 checkbox, multi-select ==> 여러 값 ==> 배열에 연결
+   
+   model의 수식어: bind 시점에 개입
+    - lazy: 폼에서 change event 발생할 때까지 대기
+    - trim: 공백 제거
+    - number: 입력 값을 number로 변경(기본은 문자열)
+
+3교시
+ -  v-show : 조건 불만족 시 화면 표시 X , display = none
+ -  v-if      : 조건 불만족 시 화면 표시 X , <!-- --> 주석 처리
+ - , v-else-if, v-else,  
+
+ - v-for:
+   v-for="(value[, [key [, index]]]) in list"
+     value: list가 가지는 값
+     key: 값이 객체일때는 속성이름, 배열은  index
+     index: 값이 객체면 0 ~의 순번, 배열은 없음 
+     <template>: 반복 요소가 애매해서 별도로 묶어야 할때
+     - 실제로 화면에 출력되지는 않음
+
+4교시     
+    :key 속성의 활용: 반복되는 아이템의 재사용(기존 UI활용)
+       - 대량의 데이터가 반복될 때 큰 효과
+       - 적으면 오히려 무거워질 수도
+
+ - v-pre: 여기는 vue에서 처리할 내용이 없어요~
+        - vue의 컴파일 생략 --> 속도 향상
+
+ - v-cloak: 
+    vue 처리가 늦어지면 vue 표현식이 화면에 노출
+    css [v-cloak] {display: none;}와 연결, 
+    vue의 동작이 끝나면 v-cloak 삭제
+
+ - computed 속성
+   - 복잡한 계산식의 결과를 모델처럼 바인딩해서 사용할 때
+
+5교시
+ - flag를 이용한 v-for, v-model 예제 
+   this 문제 언급
+ - email 처리 예제
+
+6교시
+ Vue instance
+ -  new Vue({}) --> MVVM에서 VM(view model) 담당
+ - Vue의 옵션 객체
+    el: vue로 만든 화면이 그려지는 인스턴스 시작지점, id 기반 접근
+    data: json 객체 형태
+         model의 속성은 그대로 vi의 속성이 된다.
+    computed: 계산된 속성
+         함수들로 구성된 객체
+         함수들은 model의 속성처럼 vue의 속성 --> 선언만하면 자동 실행
+    methods:
+         Vue에서 사용할 메서드를 등록하는 속성
+         computed와 달리 직접 호출해주세요~(이벤트 처리 등에서 많이 사용)
+    watch:
+         computed와 유사하게 종속 데이터 변경 시 동작
+         computed: 동기 ->리턴 필요,  watch:비동기 처리 -> 값을 리턴X
+         함수 이름은 모니터링할 속성 이름
+         함수 파라미터는 변경되는 값(newValue)
+    filters:
+         {{}} 또는 v-bind에서 텍스트에 대한 형식화 지원
+         {{message | toUpper}} : | 를 이용해서 filter 적용
+
+    life cycle methods:
+
+computed                                 methods                      watch
+값이 캐싱                                  캐싱X                          캐싱X  
+값이 자주 안바뀔때                     값이 자주 변경되는 경우   비동기에 유리 
+종속 대상이 변경되면 자동 호출
+반드시 return 값 필요                 O or X                          X
+
+7교시
+이벤트 처리
+   v-on:event_name="javascript"
+   @event_name="javascript"
+
+
+
+
+
+
+
+
+
+
+- git 연동 실패 및 등록 안됨
+
+
+
+
+
+
+
+
+
+
+
+

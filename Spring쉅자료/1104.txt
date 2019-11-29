@@ -1,0 +1,45 @@
+스프링 MVC 예외 페이지 처리: @ExceptionHandler
+
+@ExceptionHandler(RuntimeException.class)
+	// @ExceptionHandler 에서는  Model을 사용할 수 없다.ㅜㅜ
+	public ModelAndView handleError() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("message", "서버 오류 발생");
+		mav.setViewName("Error");
+		return mav;
+}
+
+스프링 부트에서의 예외 처리
+ - web.xml이 없음 --> 에러페이지 등록 불가
+ - BasicErrorController가 기본적으로 동작 중 --> 수정필요 
+ - 1. 기본 에러페이지 동작 중지
+     server.error.whitelabel.enabled=false
+   2. ErrorController 구현  
+   
+   	@Override
+	public String getErrorPath() {
+		// TODO Auto-generated method stub
+		return "/error";	// 에러 발생 시 호출될 URL
+	}
+	
+	@RequestMapping("/error")
+	public String handleError(HttpServletRequest req, Model model) {
+		Object status = req.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+		if(status!=null) {
+			Integer code = Integer.parseInt(status.toString());
+			if(code==404) {
+				model.addAttribute("message", "찾는 페이지가 없습니다.");
+			}else {
+				model.addAttribute("message", "잠시 후 다시 시도해주세요.");
+			}
+		}
+		return "Error";
+	} 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
